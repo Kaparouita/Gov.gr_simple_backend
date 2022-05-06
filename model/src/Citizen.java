@@ -1,58 +1,66 @@
 import java.util.Date;
 
 public class Citizen extends Person {
-    private String AFM;
+    private int AFM;
     private String password;
     private int UserID;
     private boolean Vaccinated;
     public Appointment appointment;
     private int Phone_number;
+    private Covid_19_certificate covid_19_certificate;
 
-    public Citizen(String first_name, String last_name, Date born_date, String AFM) {
+    public Citizen(String first_name, String last_name, Date born_date, int afm) {
+        setFirst_name(first_name);
+        setLast_name(last_name);
+        setBorn_date(born_date);
+        this.AFM=afm;
     }
+
+    public void setAFM(int AFM) {
+        this.AFM = AFM;
+    }
+    public int getAFM() {
+        return AFM;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
+    public Appointment getAppointment() {
+        return appointment;
+    }
+    public void setUserID(int userID) {
+        UserID = userID;
+    }
+    public int getUserID() {
+        return UserID;
+    }
+    public void setVaccinated(boolean vaccinated) {
+        Vaccinated = vaccinated;
+    }
+    public boolean IsVaccinated() {
+        return this.Vaccinated;
+    }
+    int getPhone_number() {
+        return this.Phone_number;
+    }
+    void setPhone_number(int value) {
+        this.Phone_number=value;
+    }
+
 
     public String Get_full_name() {
         return this.getFirst_name()+" "+this.getLast_name();
-    }
-    public int Get_userID() {
-        return this.UserID;
-    }
-    public String Get_AFM() {
-        return this.AFM;
     }
 
     public void Set_new_password(int old_password) {
     }
 
-    public void Set_phone(int number) {
-    }
-
-    public boolean IsVaccinated() {
-        return this.Vaccinated;
-    }
-
-    public void Set_Vaccinated(boolean vaccinated) {
-    }
-
-    public void Set_appointment(Appointment appointment) {
-    }
-
     public void Cancel_appointment(Appointment appointment) {
     }
 
-    public Appointment Get_Appointment() {
-        return this.appointment;
-    }
+    public void print_certificate(){
 
-
-    int getPhone_number() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.Phone_number;
-    }
-
-    void setPhone_number(int value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.Phone_number = value;
     }
 
 }

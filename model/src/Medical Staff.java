@@ -17,21 +17,17 @@ abstract class Medical_Staff extends Person {
 
 
     String getIntership() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.Intership;
     }
 
     void setIntership(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
         this.Intership = value;
     }
 
     Appointment[] getMS_Appointments() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.MS_Appointments;
     }
     void setMS_Appointments(Appointment[] value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
         this.MS_Appointments = value;
     }
 

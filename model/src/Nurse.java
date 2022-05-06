@@ -5,6 +5,8 @@ public class Nurse extends Medical_Staff {
     private Doctor Working_for;
 
     public Nurse(String name, Date born_date) {
+        setFirst_name(name);
+        setBorn_date(born_date);
     }
 
 
