@@ -9,6 +9,7 @@ class System_Admin extends Person {
     public List<Citizen> Citizens = new ArrayList<Citizen> ();
 
     public void Add_Citizen(Citizen citizen) {
+        Citizens.add(citizen);
     }
     public void Add_Medical_Staff(Medical_Staff medical_staff) {
     }

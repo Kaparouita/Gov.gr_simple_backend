@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Objects;
 
 public class Citizen extends Person {
     private int AFM;
@@ -53,10 +54,16 @@ public class Citizen extends Person {
         return this.getFirst_name()+" "+this.getLast_name();
     }
 
-    public void Set_new_password(int old_password) {
+    public void Set_new_password(String old_password,String new_password) {
+        if(Objects.equals(old_password, this.password)){
+            this.password=new_password;
+        }
+        else
+            System.out.println("Wrong password");
     }
 
     public void Cancel_appointment(Appointment appointment) {
+
     }
 
     public void print_certificate(){
