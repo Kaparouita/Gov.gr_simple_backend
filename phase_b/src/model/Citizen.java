@@ -1,27 +1,43 @@
-import java.util.Date;
+package model;
+
 import java.util.Objects;
 
 public class Citizen extends Person {
-    private int AFM;
+    private String AFM;  /*secondary key*/
+    private String AMKA; /*primary key*/
     private String password;
-    private int UserID;
     private boolean Vaccinated;
     public Appointment appointment;
     private int Phone_number;
     private Covid_19_certificate covid_19_certificate;
 
-    public Citizen(String first_name, String last_name, Date born_date, int afm) {
+    /**
+     * Create a citizen
+     * @param first_name
+     * @param last_name
+     * @param born_date
+     * @param AMKA
+     */
+    public Citizen(String first_name, String last_name, DateClass born_date, String AMKA) {
         setFirst_name(first_name);
         setLast_name(last_name);
         setBorn_date(born_date);
-        this.AFM=afm;
+        this.AMKA=AMKA;
     }
 
-    public void setAFM(int AFM) {
+    public void setAFM(String AFM) {
         this.AFM = AFM;
     }
-    public int getAFM() {
+    public String getAFM() {
         return AFM;
+    }
+
+    public String getAMKA() {
+        return AMKA;
+    }
+
+    public void setAMKA(String AMKA) {
+        this.AMKA = AMKA;
     }
 
     public void setAppointment(Appointment appointment) {
@@ -30,12 +46,7 @@ public class Citizen extends Person {
     public Appointment getAppointment() {
         return appointment;
     }
-    public void setUserID(int userID) {
-        UserID = userID;
-    }
-    public int getUserID() {
-        return UserID;
-    }
+
     public void setVaccinated(boolean vaccinated) {
         Vaccinated = vaccinated;
     }
@@ -70,4 +81,17 @@ public class Citizen extends Person {
 
     }
 
+    @Override
+    public String toString() {
+        return "Citizen{" +
+                "Name=" + Get_full_name()+
+                "Born=" + getBorn_date()+
+                "AFM=" + AFM +
+                ", AMKA=" + AMKA +
+                ", Vaccinated=" + Vaccinated +
+                ", appointment=" + appointment +
+                ", Phone_number=" + Phone_number +
+                ", covid_19_certificate=" + covid_19_certificate +
+                '}';
+    }
 }

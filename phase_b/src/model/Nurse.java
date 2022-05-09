@@ -1,10 +1,16 @@
+package model;
+
+import model.Citizen;
+import model.Doctor;
+import model.Medical_Staff;
+
 import java.util.Date;
 
 public class Nurse extends Medical_Staff {
     private int nurseID;
     private Doctor Working_for;
 
-    public Nurse(String name, Date born_date) {
+    public Nurse(String name, DateClass born_date) {
         setFirst_name(name);
         setBorn_date(born_date);
     }
@@ -19,6 +25,7 @@ public class Nurse extends Medical_Staff {
     }
 
     public void Set_working_for(Doctor p1) {
+        Working_for=p1;
     }
 
     public void Vaccinate_citizen(Citizen citizen, Vaccine vaccine) {

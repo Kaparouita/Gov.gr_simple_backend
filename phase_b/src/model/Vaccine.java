@@ -1,10 +1,15 @@
+package model;
+
+import model.Citizen;
+import model.Nurse;
+
 import java.util.Date;
 
 public class Vaccine {
     private String Name;
     private int dose;
     private Citizen Person;
-    private Nurse Nurse;
+    private model.Nurse Nurse;
     private Date Date;
     private int vaccine_ID;
 

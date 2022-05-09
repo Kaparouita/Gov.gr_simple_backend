@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Date;
 
 public abstract class Person {
@@ -5,7 +7,7 @@ public abstract class Person {
     private String Fathers_name;
     private String Last_name;
     private int Phone_number;
-    private Date Born_date;
+    private DateClass Born_date;
 
 
 
@@ -33,10 +35,10 @@ public abstract class Person {
     void setPhone_number(int value) {
         this.Phone_number = value;
     }
-    Date getBorn_date() {
+    DateClass getBorn_date() {
         return this.Born_date;
     }
-    void setBorn_date(Date value) {
+    void setBorn_date(DateClass value) {
         this.Born_date = value;
     }
 

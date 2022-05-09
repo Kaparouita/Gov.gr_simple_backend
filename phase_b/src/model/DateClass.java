@@ -1,12 +1,16 @@
-public class Date {
+package model;
+
+public class DateClass {
     private int day;
     private int year;
     private int month;
     private int time;
 
 
-    public Date (int day,int month,int year){
-
+    public DateClass(int day, int month, int year){
+this.day=day;
+this.month=month;
+this.year = year;
     }
 
     public void setDay(int day) {
@@ -39,5 +43,14 @@ public class Date {
 
     public int getYear() {
         return year;
+    }
+
+    @Override
+    public String toString() {
+        return "Date{" +
+                "day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                '}';
     }
 }

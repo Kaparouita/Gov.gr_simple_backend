@@ -1,16 +1,18 @@
+package model;
+
 public class Covid_19_certificate {
     private Person person;
     private Vaccine vaccine;
     private int certificate_ID; //primary_key
     private Medical_Staff medical_staff;
-    private Date date;
+    private DateClass date;
 
 
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateClass date) {
         this.date = date;
     }
 
@@ -30,7 +32,7 @@ public class Covid_19_certificate {
         return vaccine;
     }
 
-    public Date getDate() {
+    public DateClass getDate() {
         return date;
     }
 

@@ -1,4 +1,6 @@
+package model;
 
+import model.Appointment;
 
 abstract class Medical_Staff extends Person {
     private String Hospital_name;
@@ -30,5 +32,7 @@ abstract class Medical_Staff extends Person {
     void setMS_Appointments(Appointment[] value) {
         this.MS_Appointments = value;
     }
+
+
 
 }
