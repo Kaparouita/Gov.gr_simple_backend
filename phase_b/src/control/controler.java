@@ -11,7 +11,6 @@ public class controler {
     Hospital venizeleio;
     Vaccine Pfizer;
     Vaccine Johnson;
-    ArrayList<DateClass> Available_dates = new ArrayList<>();
 
     System_Admin admin = new System_Admin(0);
 
@@ -52,10 +51,10 @@ public class controler {
             /*check if there is a nurse available on the hospital*/
             if (nurse.getHospital().equals(hospital)) {
                 /*check if the time is available*/
-                for (DateClass available_date : Available_dates) {
+                for (DateClass available_date : admin.getAvailable_dates()) {
                     if ((available_date.getTime().equals(date.getTime())) && available_date.getDay() == date.getDay()
                             && available_date.getMonth() == date.getMonth()) {/*gia kapoio logo h sygrish object den vgenei swsta*/
-                        Available_dates.remove(available_date); /*remove to date apo ta available list*/
+                        admin.getAvailable_dates().remove(available_date); /*remove to date apo ta available list*/
                         Appointment appointment = new Appointment(date, citizen, hospital,
                                 nurse, date.getTime(), vaccine);/*create the appointment*/
                         nurse.getMS_Appointments().add(appointment);/*authorize a nurse for the appointment*/
@@ -73,27 +72,19 @@ public class controler {
     }
 
     /**
-     * initialize available dates to book appointments
+     * cancel an appointment
+     * @param appointment
      */
-    public void init_available_dates() {
-        ArrayList<String> time = new ArrayList<>();
-        for (int i = 8; i < 20; i++) {
-            for (int j = 0; j < 60; ) {
-                if (j == 0)
-                    time.add(i + ":0" + j);
-                else
-                    time.add(i + ":" + j);
-                j = j + 20;
-            }
-        }
-        for (int i = 1; i < 32; i++) {
-            for (int j = 0; j < time.size(); j++) {
-                DateClass init_date = new DateClass(i, 6, 2000);
-                init_date.setTime(time.get(j));
-                Available_dates.add(init_date);
-            }
-        }
+    public void Cancel_appointment(Appointment appointment){
+        appointment.getCitizen().setAppointment(null); /*remove appointment from citizen*/
+        admin.Delete_appointment(appointment);/*remove from database*/
+        DateClass date=new DateClass(appointment.getDate().getDay(),appointment.getDate().getMonth(),appointment.getDate().getYear());
+        date.setTime(appointment.getTime());
+        admin.getAvailable_dates().add(date);/*add date again*/
+        appointment.getNurse().getMS_Appointments().remove(appointment);/*also remove it from the nurse appointments*/
     }
+
+
 
     /*test main*/
     public static void main(String[] args) throws IOException {
@@ -116,13 +107,16 @@ public class controler {
 
         c.admin.Add_nurse(nurse);
         c.admin.Add_nurse(nur);
-        c.init_available_dates();
+        c.admin.init_available_dates();
 
         c.set_appointment(date1, a, c.pagnh, pfizer);
         c.set_appointment(date2, b, c.venizeleio, pfizer);
 
         c.admin.getAppointments_Data();
 
+        c.Cancel_appointment(a.getAppointment());
+
+       
     }
 }
 

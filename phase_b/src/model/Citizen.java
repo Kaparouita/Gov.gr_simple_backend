@@ -90,10 +90,6 @@ public class Citizen extends Person {
             System.out.println("Wrong password");
     }
 
-    public void Cancel_appointment(Appointment appointment) {
-
-    }
-
     public void print_certificate(){
 
     }

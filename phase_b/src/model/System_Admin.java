@@ -9,6 +9,7 @@ public class System_Admin extends Person {
     private ArrayList<Citizen> Citizens = new ArrayList<Citizen>();
     private ArrayList<Nurse> Nurses = new ArrayList<Nurse>();
     private ArrayList<Appointment> appointments = new ArrayList<>();
+    ArrayList<DateClass> Available_dates = new ArrayList<>();
 
     public void Add_Citizen(Citizen citizen) {
         Citizens.add(citizen);
@@ -44,6 +45,33 @@ public class System_Admin extends Person {
     }
 
     /**
+     * initialize available dates to book appointments
+     */
+    public void init_available_dates() {
+        ArrayList<String> time = new ArrayList<>();
+        for (int i = 8; i < 20; i++) {
+            for (int j = 0; j < 60; ) {
+                if (j == 0)
+                    time.add(i + ":0" + j);
+                else
+                    time.add(i + ":" + j);
+                j = j + 20;
+            }
+        }
+        for (int i = 1; i < 32; i++) {
+            for (int j = 0; j < time.size(); j++) {
+                DateClass init_date = new DateClass(i, 6, 2000);
+                init_date.setTime(time.get(j));
+                Available_dates.add(init_date);
+            }
+        }
+    }
+
+    public ArrayList<DateClass> getAvailable_dates() {
+        return Available_dates;
+    }
+
+    /**
      * Remove a citizen from the database
      * @param citizen
      */
@@ -57,6 +85,9 @@ public class System_Admin extends Person {
      */
     public void Delete_nurse(Nurse nurse) {
         Nurses.remove(nurse);
+    }
+    public void Delete_appointment(Appointment appointment) {
+        appointments.remove(appointment);
     }
 
     public void Delete_doctor(Doctor doctor) {
