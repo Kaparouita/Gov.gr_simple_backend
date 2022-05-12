@@ -7,7 +7,7 @@ public class Citizen extends Person {
     private String AMKA; /*primary key*/
     private String password;
     private boolean Vaccinated;
-    public Appointment appointment;
+    private Appointment appointment;
     private int Phone_number;
     private Address adress;
     private Covid_19_certificate covid_19_certificate;

@@ -1,10 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+
 abstract class Medical_Staff extends Person {
     private Hospital hospital;
     private String Intership;
-    private Appointment[] MS_Appointments;
 
+    private ArrayList<Appointment> MS_Appointments = new ArrayList<>();
 
     public Hospital getHospital() {
         return hospital;
@@ -22,13 +24,11 @@ abstract class Medical_Staff extends Person {
         this.Intership = value;
     }
 
-    Appointment[] getMS_Appointments() {
-        return this.MS_Appointments;
-    }
-    void setMS_Appointments(Appointment[] value) {
-        this.MS_Appointments = value;
+    public ArrayList<Appointment> getMS_Appointments() {
+        return MS_Appointments;
     }
 
-
-
+    public void setMS_Appointments(ArrayList<Appointment> MS_Appointments) {
+        this.MS_Appointments = MS_Appointments;
+    }
 }

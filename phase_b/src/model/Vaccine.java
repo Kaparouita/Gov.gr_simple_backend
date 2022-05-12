@@ -8,15 +8,17 @@ import java.util.Date;
 public class Vaccine {
     private String Name;
     private int dose;
-    private Citizen Person;
-    private model.Nurse Nurse;
-    private Date Date;
     private int vaccine_ID;
 
-    public void Vaccinate(Citizen citizen, Nurse nurse, Date date) {
-    }
-
-    public Vaccine(String vaccine_name) {
+    /**
+     * Create a vaccine
+     * @param vaccine_name Johnson / Pfizer
+     * @param dose first/second etc
+     */
+    public Vaccine(String vaccine_name,int dose) {
+        this.Name=vaccine_name;
+        this.dose=dose;
+        vaccine_ID=hashCode();
     }
     public void setDose(int dose) {
         this.dose = dose;
@@ -31,15 +33,6 @@ public class Vaccine {
     public String getName() {
         return Name;
     }
-
-    public void setDate(java.util.Date date) {
-        Date = date;
-    }
-
-    public java.util.Date getDate() {
-        return Date;
-    }
-
 
     public int getVaccine_ID() {
         return vaccine_ID;

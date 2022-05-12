@@ -9,6 +9,7 @@ import java.util.Date;
 public class Nurse extends Medical_Staff {
     private final int nurseID;
     private Doctor Working_for;
+    private int appointments_count;
 
     public Nurse(String first_name,String last_name, DateClass born_date,Hospital hospital) {
         setFirst_name(first_name);
@@ -18,6 +19,13 @@ public class Nurse extends Medical_Staff {
         this.nurseID=hashCode();
     }
 
+    public int getAppointments_count() {
+        return appointments_count;
+    }
+
+    public void setAppointments_count(int appointments_count) {
+        this.appointments_count = appointments_count;
+    }
 
     public int Get_nurseID() {
         return this.nurseID;

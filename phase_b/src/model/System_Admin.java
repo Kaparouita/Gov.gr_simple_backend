@@ -8,6 +8,7 @@ public class System_Admin extends Person {
     private Doctor[] Doctors;
     private ArrayList<Citizen> Citizens = new ArrayList<Citizen>();
     private ArrayList<Nurse> Nurses = new ArrayList<Nurse>();
+    private ArrayList<Appointment> appointments = new ArrayList<>();
 
     public void Add_Citizen(Citizen citizen) {
         Citizens.add(citizen);
@@ -19,7 +20,6 @@ public class System_Admin extends Person {
     /**
      * add a nurse to the system
      * @param nurse The nurse
-     * @param hospital Hospital working for
      */
     public void Add_nurse(Nurse nurse) {
         for (Nurse nurse1 : Nurses) {
@@ -31,10 +31,32 @@ public class System_Admin extends Person {
         Nurses.add(nurse);
     }
 
-    public void Delete_Citizen(Citizen citizen) {
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
     }
 
+    public void setAppointments(ArrayList<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public ArrayList<Nurse> getNurses() {
+        return Nurses;
+    }
+
+    /**
+     * Remove a citizen from the database
+     * @param citizen
+     */
+    public void Delete_Citizen(Citizen citizen) {
+        Citizens.remove(citizen);
+    }
+
+    /**
+     * Remove a nurse from the database
+     * @param nurse
+     */
     public void Delete_nurse(Nurse nurse) {
+        Nurses.remove(nurse);
     }
 
     public void Delete_doctor(Doctor doctor) {
@@ -44,6 +66,7 @@ public class System_Admin extends Person {
     }
 
     public System_Admin(int admin_id) {
+        this.AdminID=admin_id;
     }
 
     /**
@@ -55,6 +78,14 @@ public class System_Admin extends Person {
         }
     }
 
+    /**
+     * Print all Appointments in the database
+     */
+    public void getAppointments_Data() {
+        for (Appointment appointment : appointments) {
+            System.out.println(appointment + " ,");
+        }
+    }
     /**
      * Print Nurses data
      */

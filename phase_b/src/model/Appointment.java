@@ -3,18 +3,34 @@ package model;
 import java.util.Date;
 
 public class Appointment {
-    private Date Date;
+    private DateClass Date;
     private Vaccine vaccine;
     private Citizen citizen;
-    private String hospital;
+    private Hospital hospital;
     private int AppointmentID;
     private Nurse nurse;
+    private String time;// time format example 20:00;
 
 
-    public Appointment(Date date, Citizen citizen, String hospital, Nurse nurse) {
+    public Appointment(DateClass date, Citizen citizen, Hospital hospital, Nurse nurse,String time,Vaccine vaccine) {
+        this.Date=date;
+        this.citizen=citizen;
+        this.hospital=hospital;
+        this.time=time;
+        this.nurse=nurse;
+        this.vaccine=vaccine;
+        this.AppointmentID=hashCode();
     }
 
-    public Date getDate() {
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public DateClass getDate() {
         return Date;
     }
 
@@ -26,16 +42,12 @@ public class Appointment {
         return vaccine;
     }
 
-    public void setDate(Date date, int time) {
-        Date = date;
-        date.setTime(time);
-    }
 
-    public void setHospital(String hospital) {
+    public void setHospital(Hospital hospital) {
         this.hospital = hospital;
     }
 
-    public String getHospital() {
+    public Hospital getHospital() {
         return hospital;
     }
 
@@ -61,5 +73,19 @@ public class Appointment {
 
     public Nurse getNurse() {
         return nurse;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "Date=" + Date +
+                ", time='" + time +
+                ", vaccine=" + vaccine.getName() +" dose= "+ vaccine.getDose()+
+                ", citizen=" + citizen.Get_full_name() +
+                ", hospital=" + hospital.name +
+                ", AppointmentID=" + AppointmentID +
+                ", nurse=" + nurse.getFirst_name() +" "+nurse.getLast_name()+
+                '\'' +
+                '}';
     }
 }
