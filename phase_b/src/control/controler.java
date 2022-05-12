@@ -14,6 +14,24 @@ public class controler {
 
     System_Admin admin = new System_Admin(0);
 
+    public controler(){
+        init_hospitals();
+        init_vaccines();
+        init_nurses();
+
+    }
+
+
+    /**
+     * init 5 nurses
+     */
+    public void init_nurses(){
+        admin.Add_nurse(new Nurse("Maria", "papadopoulou", new DateClass(6, 7, 2000), venizeleio));
+        admin.Add_nurse(new Nurse("Katerina", "grigoriou", new DateClass(14, 8, 1980), pagnh));
+        admin.Add_nurse(new Nurse("Vaggelhs", "kokosalis", new DateClass(4, 1, 1990), venizeleio));
+        admin.Add_nurse(new Nurse("Elenh", "arkoulaki", new DateClass(30, 3, 1995), venizeleio));
+        admin.Add_nurse(new Nurse("Kostas", "margiotakis", new DateClass(25, 11, 1994), venizeleio));
+    }
     /**
      * init 2 hospitals for herakleion
      */
@@ -116,7 +134,7 @@ public class controler {
 
         c.Cancel_appointment(a.getAppointment());
 
-       
+
     }
 }
 
