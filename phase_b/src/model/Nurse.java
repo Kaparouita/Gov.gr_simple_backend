@@ -7,12 +7,15 @@ import model.Medical_Staff;
 import java.util.Date;
 
 public class Nurse extends Medical_Staff {
-    private int nurseID;
+    private final int nurseID;
     private Doctor Working_for;
 
-    public Nurse(String name, DateClass born_date) {
-        setFirst_name(name);
+    public Nurse(String first_name,String last_name, DateClass born_date,Hospital hospital) {
+        setFirst_name(first_name);
+        setLast_name(last_name);
         setBorn_date(born_date);
+        setHospital(hospital);
+        this.nurseID=hashCode();
     }
 
 
@@ -31,4 +34,14 @@ public class Nurse extends Medical_Staff {
     public void Vaccinate_citizen(Citizen citizen, Vaccine vaccine) {
     }
 
+    @Override
+    public String toString() {
+        return "Nurse{" +
+                "First name  = " + getFirst_name()+
+                ", Last name = "  + getLast_name() +
+                ", nurseID = " + nurseID +
+                ", Working_for = " + Working_for +
+                ", Working_at = "+ getHospital().name +
+                '}';
+    }
 }

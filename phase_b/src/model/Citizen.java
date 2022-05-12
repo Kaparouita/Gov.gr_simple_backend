@@ -9,6 +9,7 @@ public class Citizen extends Person {
     private boolean Vaccinated;
     public Appointment appointment;
     private int Phone_number;
+    private Address adress;
     private Covid_19_certificate covid_19_certificate;
 
     /**
@@ -25,11 +26,27 @@ public class Citizen extends Person {
         this.AMKA=AMKA;
     }
 
+    public Address getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Address adress) {
+        this.adress = adress;
+    }
+
     public void setAFM(String AFM) {
         this.AFM = AFM;
     }
     public String getAFM() {
         return AFM;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getAMKA() {
@@ -85,8 +102,8 @@ public class Citizen extends Person {
     public String toString() {
         return "Citizen{" +
                 "Name=" + Get_full_name()+
-                "Born=" + getBorn_date()+
-                "AFM=" + AFM +
+                ", Born=" + getBorn_date()+
+                ", AFM=" + AFM +
                 ", AMKA=" + AMKA +
                 ", Vaccinated=" + Vaccinated +
                 ", appointment=" + appointment +

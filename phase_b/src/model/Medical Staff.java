@@ -1,22 +1,18 @@
 package model;
 
-import model.Appointment;
-
 abstract class Medical_Staff extends Person {
-    private String Hospital_name;
-    private String Department_name;
+    private Hospital hospital;
     private String Intership;
     private Appointment[] MS_Appointments;
 
 
-    public String Get_hospital_name() {
-        return this.Hospital_name;
+    public Hospital getHospital() {
+        return hospital;
     }
 
-    public String Get_department_name() {
-        return this.Department_name;
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
-
 
     String getIntership() {
         return this.Intership;

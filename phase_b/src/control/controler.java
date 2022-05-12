@@ -1,50 +1,76 @@
 package control;
 
-import model.Citizen;
+import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import model.DateClass;
+import java.util.List;
 
 public class controler {
+    Hospital pagnh;
+    Hospital venizeleio;
+    ArrayList<DateClass> Available_dates = new ArrayList<>();
 
-
-    ArrayList<Citizen> Citizen_Data = new ArrayList<>();
+    System_Admin admin = new System_Admin(0);
 
     /**
-     * add new user to the database
+     * init 2 hospitals for herakleion
      */
-    public void register(Citizen citizen) {
-        boolean flag = false;
-        for (int i = 0; i < Citizen_Data.size(); i++) {
-            if (Citizen_Data.get(i).equals(citizen)) {
-                flag = true;
-            }
-        }
-        if (flag == false)
-            Citizen_Data.add(citizen);
-        else
-            System.out.println("Already registered");
+    public void init_hospitals() {
+        pagnh = new Hospital("Pagnh", new Address("Hrakleio", "Panepistimiou", 71500));
+        venizeleio = new Hospital("Venizeleio", new Address("Hrakleio", "Lewf.Knwsou", 44));
+    }
+
+    public void set_appointment(DateClass date, Citizen citizen, String hospital) {
+
     }
 
     /**
-     * get citizens data for testing
+     * initialize available dates to book appointments
      */
-    public void getCitizen_Data() {
-        for (int i = 0; i < Citizen_Data.size(); i++) {
-            System.out.println(Citizen_Data.get(i)+" ,");
+    public void init_available_dates() {
+        ArrayList<String> days = new ArrayList<>();
+        ArrayList<String> time = new ArrayList<>();
+        for (int i = 8; i < 20; i++) {
+            for (int j = 0; j < 60; ) {
+                if(j==0)
+                    time.add(i+":0"+j);
+                else
+                    time.add(i+":"+j);
+                j=j+20;
+            }
         }
+        for(int i=1;i<32;i++) {
+            for(int j=0;j< time.size();j++) {
+                DateClass init_date = new DateClass(i, 6, 2000);
+                init_date.setTime(time.get(j));
+                Available_dates.add(init_date);
+            }
+        }
+        for (DateClass available_date : Available_dates) System.out.println(available_date+" "+available_date.getTime());
     }
 
     /*test main*/
     public static void main(String[] args) throws IOException {
+        System_Admin admin1 = new System_Admin(0);
+        controler c = new controler();
+        c.init_hospitals();
+
         Citizen a = new Citizen("Giorgos", "Stiv", new DateClass(6, 7, 2000), "007773330");
-        Citizen b = new Citizen("Giorgis", "Stiv", new DateClass(6, 7, 2000), "007773330");
-controler c=new controler();
-        System.out.println(a.toString());
-        c.register(a);
-        c.register(b);
-        c.getCitizen_Data();
+        Nurse nurse = new Nurse("Maria", "papadopoulou", new DateClass(6, 7, 2000), c.venizeleio);
+        Nurse nur = new Nurse("Katerina", "grigoriou", new DateClass(6, 7, 2000), c.pagnh);
+
+
+        admin1.register(a, "helloo");
+
+        admin1.Add_nurse(nurse);
+        admin1.Add_nurse(nur);
+        admin1.getNurses_Data();
+
+        c.init_available_dates();
+
     }
 }
+
+
+

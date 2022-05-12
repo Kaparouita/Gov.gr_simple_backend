@@ -4,7 +4,7 @@ public class DateClass {
     private int day;
     private int year;
     private int month;
-    private int time;
+    private String time;
 
 
     public DateClass(int day, int month, int year){
@@ -21,7 +21,7 @@ this.year = year;
         this.month = month;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -37,7 +37,7 @@ this.year = year;
         return month;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
