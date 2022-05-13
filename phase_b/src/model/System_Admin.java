@@ -152,24 +152,25 @@ public class System_Admin extends Person {
     /**
      * Login to the system
      * to login ginete me AMKA kai password
-     *
+     * returns true if login succeed /returns false otherwise
      * @param password
      * @param AMKA
      */
-    public void Login(String AMKA, String password) {
+    public boolean Login(String AMKA, String password) {
         for (Citizen value : Citizens) {
             if (value.getAMKA().equals(AMKA)) {
                 if (value.getPassword().equals(password)) {
                     /*login succed*/
                     System.out.println("login successfully");
-                    return;
+                    return true;
                 } else {
                     System.out.println("Wrong password");
-                    return;
+                    return false;
                 }
             }
         }
         System.out.println("no citizen with that AMKA");
+        return false;
     }
 }
 

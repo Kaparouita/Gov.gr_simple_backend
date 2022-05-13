@@ -1,12 +1,24 @@
 package model;
 
 public class Covid_19_certificate {
-    private Person person;
+    private Citizen citizen;
     private Vaccine vaccine;
     private int certificate_ID; //primary_key
     private Medical_Staff medical_staff;
     private DateClass date;
 
+    /**
+     * Create a covid_19 certificate by using
+     * an appointment's info
+     * @param appointment
+     */
+    public Covid_19_certificate(Appointment appointment){
+        this.citizen=appointment.getCitizen();
+        this.vaccine=appointment.getVaccine();
+        this.date=appointment.getDate();
+        this.medical_staff=appointment.getNurse();
+        this.certificate_ID=hashCode();
+    }
 
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
@@ -22,10 +34,6 @@ public class Covid_19_certificate {
 
     public void setMedical_staff(Medical_Staff medical_staff) {
         this.medical_staff = medical_staff;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public Vaccine getVaccine() {
@@ -44,7 +52,19 @@ public class Covid_19_certificate {
         return medical_staff;
     }
 
-    public Person getPerson() {
-        return person;
+    /**
+     * prints this certificate
+     */
+    public String print_certificate(){
+        return "Covid_19_certificate\n" +
+                "Certificate barcode : "+certificate_ID+
+                "\nName : " + citizen.Get_full_name() +
+                "\nVaccine : " + vaccine.getName() +
+                "\nDose : " + vaccine.getDose() +
+                "\nDate : " + date + " , time : "+date.getTime()+
+                "\nNurse : " + getMedical_staff().getFirst_name()+" "+getMedical_staff().getLast_name()
+                ;
     }
+
+
 }

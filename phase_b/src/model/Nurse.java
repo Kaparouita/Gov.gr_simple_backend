@@ -39,7 +39,12 @@ public class Nurse extends Medical_Staff {
         Working_for=p1;
     }
 
-    public void Vaccinate_citizen(Citizen citizen, Vaccine vaccine) {
+    /**
+     * after someone is vaccinated confirmed it
+     *
+     */
+    public void Confirm_vaccination(){
+
     }
 
     @Override

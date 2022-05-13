@@ -30,7 +30,7 @@ public class controler {
         admin.Add_nurse(new Nurse("Katerina", "grigoriou", new DateClass(14, 8, 1980), pagnh));
         admin.Add_nurse(new Nurse("Vaggelhs", "kokosalis", new DateClass(4, 1, 1990), venizeleio));
         admin.Add_nurse(new Nurse("Elenh", "arkoulaki", new DateClass(30, 3, 1995), venizeleio));
-        admin.Add_nurse(new Nurse("Kostas", "margiotakis", new DateClass(25, 11, 1994), venizeleio));
+        admin.Add_nurse(new Nurse("Kostas", "margiotakis", new DateClass(25, 11, 1994), pagnh));
     }
     /**
      * init 2 hospitals for herakleion
@@ -52,7 +52,7 @@ public class controler {
      * set an appointment
      * Available time from 8:00 to 19:40
      *
-     * @param date date must have set time
+     * @param date date must have set time !=null
      * @param citizen
      * @param hospital
      */
@@ -130,11 +130,8 @@ public class controler {
         c.set_appointment(date1, a, c.pagnh, pfizer);
         c.set_appointment(date2, b, c.venizeleio, pfizer);
 
-        c.admin.getAppointments_Data();
-
-        c.Cancel_appointment(a.getAppointment());
-
-
+        a.setCovid_19_certificate(new Covid_19_certificate(a.getAppointment()));
+        System.out.println(a.getCovid_19_certificate().print_certificate());
     }
 }
 

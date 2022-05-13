@@ -30,6 +30,14 @@ public class Citizen extends Person {
         return adress;
     }
 
+    public Covid_19_certificate getCovid_19_certificate() {
+        return covid_19_certificate;
+    }
+
+    public void setCovid_19_certificate(Covid_19_certificate covid_19_certificate) {
+        this.covid_19_certificate = covid_19_certificate;
+    }
+
     public void setAdress(Address adress) {
         this.adress = adress;
     }
@@ -96,15 +104,11 @@ public class Citizen extends Person {
 
     @Override
     public String toString() {
-        return "Citizen{" +
+        return
                 "Name=" + Get_full_name()+
-                ", Born=" + getBorn_date()+
-                ", AFM=" + AFM +
-                ", AMKA=" + AMKA +
-                ", Vaccinated=" + Vaccinated +
-                ", appointment=" + appointment +
-                ", Phone_number=" + Phone_number +
-                ", covid_19_certificate=" + covid_19_certificate +
-                '}';
+                "\n Born=" + getBorn_date()+
+                "\n AFM=" + AFM +
+                "\n AMKA=" + AMKA +
+                "\n Phone_number=" + Phone_number ;
     }
 }
