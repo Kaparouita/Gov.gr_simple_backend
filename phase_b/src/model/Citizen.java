@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Citizen extends Person {
+public class Citizen extends Person implements Serializable {
     private String AFM;  /*secondary key*/
     private String AMKA; /*primary key*/
     private String password;
@@ -26,7 +27,9 @@ public class Citizen extends Person {
         this.AMKA=AMKA;
         setCurr_dose(1);
     }
-
+public Citizen(){
+        /*no param constractor*/
+}
     public int getCurr_dose() {
         return curr_dose;
     }

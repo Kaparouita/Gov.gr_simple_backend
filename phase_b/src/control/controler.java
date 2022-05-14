@@ -2,7 +2,7 @@ package control;
 
 import model.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -32,8 +32,7 @@ public class controler {
      * init 5 nurses
      */
     public void init_nurses() {
-        admin.Add_nurse(new Nurse("Maria", "papadopoulou", new DateClass(6, 7, 2000), venizeleio)
-        );
+        admin.Add_nurse(new Nurse("Maria", "papadopoulou", new DateClass(6, 7, 2000), venizeleio));
         /*password 1078694789*/
         admin.Add_nurse(new Nurse("Katerina", "grigoriou", new DateClass(14, 8, 1980), pagnh));
         /*password 1831932724*/
@@ -142,10 +141,16 @@ public class controler {
         Citizen b = new Citizen("Giannhs", "teo", new DateClass(6, 7, 2000), "234773330");
         Citizen a = new Citizen("Giorgos", "Stiv", new DateClass(6, 7, 2000), "007773330");
 
+        c.admin.register(b,"000000");
+        c.admin.register(a,"111111");
 
-        for (Nurse nurse1 : c.admin.getNurses()) {
-            System.out.println(nurse1.getLast_name() + "   " + nurse1.Get_nurseID());
-        }
+        //c.admin.create_citizen_file();
+
+        c.admin.get_data_from_citizen_file();
+        c.admin.getCitizen_Data();
+
+
+
    /*     Vaccine pfizer = new Vaccine("pfizer",1);
         DateClass date1 = new DateClass(30, 6, 2000);
         date1.setTime("15:00");

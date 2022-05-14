@@ -1,5 +1,6 @@
 package model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -156,6 +157,10 @@ public class System_Admin extends Person {
         }
     }
 
+    /**
+     * Nurse confirms vaccination using appontmentID
+     * @param AppointmentID
+     */
     public void confirm_vaccination(int AppointmentID){
         for(Appointment appointment1 : appointments)
         {
@@ -176,6 +181,59 @@ public class System_Admin extends Person {
             }
         }
         System.out.println("No appointment with that ID in the database");
+    }
+
+    /**
+     * Save citizens info before closing the program
+     */
+    public void create_citizen_file() throws IOException {
+        try {
+            String filename = "Citizens.bin";
+            FileOutputStream fos = new FileOutputStream(filename);
+            ObjectOutputStream oos= new ObjectOutputStream(fos);
+            for(Citizen citizen : Citizens){
+                oos.writeObject(citizen);
+            }
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    /**
+     * get Citizens saved on the bin file
+     * @throws IOException
+     */
+    public void get_data_from_citizen_file() throws IOException {
+        String filename = "Citizens.bin";
+        FileInputStream fis = new FileInputStream(filename);
+        ObjectInputStream ois= new ObjectInputStream(fis);
+
+        Object o;
+        while (true){
+            try{
+                o = ois.readObject();
+                if(o instanceof Citizen){
+                    /*INIT CITIZENS FROM DATABASE*/
+                    Citizens.add((Citizen)o);
+                }
+                else{
+                    System.out.println("error");
+                }
+            }
+            catch (EOFException | ClassNotFoundException ex){
+                break;
+            }
+        }
+        ois.close();
+        /*INIT APPOINTMENTS AS WELL*/
+        for (Citizen citizen:Citizens)
+        {
+            if(citizen.getAppointment()!=null){
+                appointments.add(citizen.getAppointment());
+            }
+        }
     }
     /**
      * add new user to the database

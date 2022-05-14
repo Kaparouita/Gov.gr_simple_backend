@@ -11,10 +11,11 @@ public class main {
     public static void main(String[] args) throws IOException {
         controler c = new controler();
 
-       /*TEST
+
         Citizen b = new Citizen("Giannhs", "teo", new DateClass(6, 7, 2000), "1");
         c.admin.register(b, "123456");
-        */
+
+       // c.admin.get_data_from_citizen_file();
         boolean flag = true;
 
         Scanner scanner = new Scanner(System.in);
@@ -23,11 +24,11 @@ public class main {
             System.out.println("""
                     /----------------------------------------/
 
-                    Type (1,2,3,4)
-                    1 : Login
-                    2 : Register
-                    3 : Login as Nurse
-                    4 : Exit""");
+                    Type : (1,2,3,4)\s
+                       1 : Login
+                       2 : Register
+                       3 : Login as Nurse
+                       4 : Exit""");
             String todo_string = scanner.nextLine();
             todo = Integer.parseInt(todo_string);
             /*if login*/
@@ -136,7 +137,9 @@ public class main {
             } else
                 System.out.println("wrong input");
         }
+      //  c.admin.create_citizen_file();
         scanner.close();
+
     }
 
     /**
