@@ -10,6 +10,7 @@ public class Nurse extends Medical_Staff {
     private final int nurseID;
     private Doctor Working_for;
     private int appointments_count;
+    private String password;
 
     public Nurse(String first_name,String last_name, DateClass born_date,Hospital hospital) {
         setFirst_name(first_name);
@@ -18,6 +19,15 @@ public class Nurse extends Medical_Staff {
         setHospital(hospital);
         this.nurseID=hashCode();
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public int getAppointments_count() {
         return appointments_count;

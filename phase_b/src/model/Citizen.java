@@ -8,9 +8,9 @@ public class Citizen extends Person {
     private String password;
     private boolean Vaccinated;
     private Appointment appointment;
-    private int Phone_number;
     private Address adress;
     private Covid_19_certificate covid_19_certificate;
+    private int curr_dose;
 
     /**
      * Create a citizen
@@ -24,6 +24,15 @@ public class Citizen extends Person {
         setLast_name(last_name);
         setBorn_date(born_date);
         this.AMKA=AMKA;
+        setCurr_dose(1);
+    }
+
+    public int getCurr_dose() {
+        return curr_dose;
+    }
+
+    public void setCurr_dose(int curr_dose) {
+        this.curr_dose = curr_dose;
     }
 
     public Address getAdress() {
@@ -78,12 +87,6 @@ public class Citizen extends Person {
     public boolean IsVaccinated() {
         return this.Vaccinated;
     }
-    int getPhone_number() {
-        return this.Phone_number;
-    }
-    void setPhone_number(int value) {
-        this.Phone_number=value;
-    }
 
 
     public String Get_full_name() {
@@ -109,6 +112,6 @@ public class Citizen extends Person {
                 "\n Born=" + getBorn_date()+
                 "\n AFM=" + AFM +
                 "\n AMKA=" + AMKA +
-                "\n Phone_number=" + Phone_number ;
+                "\n Phone_number=" + getPhone_number() ;
     }
 }

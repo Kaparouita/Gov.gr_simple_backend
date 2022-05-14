@@ -1,5 +1,9 @@
 package model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Covid_19_certificate {
     private Citizen citizen;
     private Vaccine vaccine;
@@ -10,14 +14,15 @@ public class Covid_19_certificate {
     /**
      * Create a covid_19 certificate by using
      * an appointment's info
+     *
      * @param appointment
      */
-    public Covid_19_certificate(Appointment appointment){
-        this.citizen=appointment.getCitizen();
-        this.vaccine=appointment.getVaccine();
-        this.date=appointment.getDate();
-        this.medical_staff=appointment.getNurse();
-        this.certificate_ID=hashCode();
+    public Covid_19_certificate(Appointment appointment) {
+        this.citizen = appointment.getCitizen();
+        this.vaccine = appointment.getVaccine();
+        this.date = appointment.getDate();
+        this.medical_staff = appointment.getNurse();
+        this.certificate_ID = hashCode();
     }
 
     public void setVaccine(Vaccine vaccine) {
@@ -55,16 +60,40 @@ public class Covid_19_certificate {
     /**
      * prints this certificate
      */
-    public String print_certificate(){
+    public String print_certificate() {
         return "Covid_19_certificate\n" +
-                "Certificate barcode : "+certificate_ID+
+                "Certificate barcode : " + certificate_ID +
                 "\nName : " + citizen.Get_full_name() +
                 "\nVaccine : " + vaccine.getName() +
                 "\nDose : " + vaccine.getDose() +
-                "\nDate : " + date + " , time : "+date.getTime()+
-                "\nNurse : " + getMedical_staff().getFirst_name()+" "+getMedical_staff().getLast_name()
+                "\nDate : " + date + " , time : " + date.getTime() +
+                "\nNurse : " + getMedical_staff().getFirst_name() + " " + getMedical_staff().getLast_name()
                 ;
     }
 
+    public void print_certificate_to_txt() throws IOException {
+        try {
+            File myObj = new File(citizen.getFirst_name() + "_" + citizen.getLast_name() + "_covid-19_certificate.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
+        try {
+            FileWriter myWriter = new FileWriter(citizen.getFirst_name() + "_" + citizen.getLast_name() +
+                    "_covid-19_certificate.txt");
+            myWriter.write(print_certificate());
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+    }
 }

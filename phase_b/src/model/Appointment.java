@@ -78,14 +78,14 @@ public class Appointment {
     @Override
     public String toString() {
         return "Appointment{" +
-                "Date=" + Date +
-                ", time='" + time +
-                ", vaccine=" + vaccine.getName() +" dose= "+ vaccine.getDose()+
-                ", citizen=" + citizen.Get_full_name() +
-                ", hospital=" + hospital.name +
-                ", AppointmentID=" + AppointmentID +
-                ", nurse=" + nurse.getFirst_name() +" "+nurse.getLast_name()+
-                '\'' +
+                "\nDate : " + Date +
+                " , " + time +
+                "\n vaccine : " + vaccine.getName() +" , dose : "+ vaccine.getDose()+
+                "\n citizen : " + citizen.Get_full_name() +
+                "\n hospital : " + hospital.name +
+                "\n AppointmentID : " + AppointmentID +
+                "\n nurse : " + nurse.getFirst_name() +" "+nurse.getLast_name()+
+                '\n' +
                 '}';
     }
 }

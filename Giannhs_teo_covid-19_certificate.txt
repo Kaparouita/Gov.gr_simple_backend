@@ -1,0 +1,7 @@
+Covid_19_certificate
+Certificate barcode : 1775282465
+Name : Giannhs teo
+Vaccine : Johnson
+Dose : 1
+Date : Date{day=14, month=6, year=2000} , time : 18:00
+Nurse : Maria papadopoulou

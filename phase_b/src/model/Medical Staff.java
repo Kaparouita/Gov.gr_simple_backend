@@ -31,4 +31,8 @@ abstract class Medical_Staff extends Person {
     public void setMS_Appointments(ArrayList<Appointment> MS_Appointments) {
         this.MS_Appointments = MS_Appointments;
     }
+
+    public void remove_appointment(Appointment appointment){
+        MS_Appointments.removeIf(appointment1 -> appointment1.equals(appointment));
+    }
 }

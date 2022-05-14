@@ -6,12 +6,12 @@ public abstract class Person {
     private String First_name;
     private String Fathers_name;
     private String Last_name;
-    private int Phone_number;
+    private String Phone_number;
     private DateClass Born_date;
 
 
 
-    String getFirst_name() {
+    public String getFirst_name() {
         return this.First_name;
     }
     void setFirst_name(String value) {
@@ -23,18 +23,21 @@ public abstract class Person {
     void setFathers_name(String value) {
         this.Fathers_name = value;
     }
-    String getLast_name() {
+    public String getLast_name() {
         return this.Last_name;
     }
     void setLast_name(String value) {
         this.Last_name = value;
     }
-    int getPhone_number() {
-        return this.Phone_number;
+
+    public String getPhone_number() {
+        return Phone_number;
     }
-    void setPhone_number(int value) {
-        this.Phone_number = value;
+
+    public void setPhone_number(String phone_number) {
+        Phone_number = phone_number;
     }
+
     DateClass getBorn_date() {
         return this.Born_date;
     }
