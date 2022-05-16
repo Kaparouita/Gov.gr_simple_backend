@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Doctor extends Medical_Staff {
     private int DoctorID;
+    
 
     public int Get_docID() {
         return this.DoctorID;

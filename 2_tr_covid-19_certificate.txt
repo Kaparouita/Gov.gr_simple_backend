@@ -1,0 +1,7 @@
+Covid_19_certificate
+Certificate barcode : 529116035
+Name : 2 tr
+Vaccine : Johnson
+Dose : 1
+Date : Date{day=16, month=6, year=2000} , time : 19:40
+Nurse : Maria papadopoulou

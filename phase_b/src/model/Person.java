@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String First_name;
     private String Fathers_name;
     private String Last_name;
@@ -45,4 +46,14 @@ public abstract class Person {
         this.Born_date = value;
     }
 
+    @Override
+    public String toString() {
+        return
+                "First_name='" + First_name + '\'' +
+                ", Fathers_name='" + Fathers_name + '\'' +
+                ", Last_name='" + Last_name + '\'' +
+                ", Phone_number='" + Phone_number + '\'' +
+                ", Born_date=" + Born_date +" , "
+                ;
+    }
 }

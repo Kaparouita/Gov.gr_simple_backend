@@ -3,9 +3,10 @@ package model;
 import model.Citizen;
 import model.Nurse;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Vaccine {
+public class Vaccine implements Serializable {
     private String Name;
     private int dose;
     private int vaccine_ID;

@@ -1,6 +1,8 @@
 package model;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String City;
     private String Street;
     private int number;
@@ -38,5 +40,14 @@ public class Address {
 
     public void setStreet(String street) {
         Street = street;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "  " + City  +
+                ",  " + Street  +
+                ",  " + number +
+                '}';
     }
 }

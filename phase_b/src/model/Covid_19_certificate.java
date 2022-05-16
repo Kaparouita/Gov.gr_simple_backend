@@ -3,8 +3,9 @@ package model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Covid_19_certificate {
+public class Covid_19_certificate implements Serializable {
     private Citizen citizen;
     private Vaccine vaccine;
     private int certificate_ID; //primary_key

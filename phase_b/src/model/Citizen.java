@@ -27,9 +27,7 @@ public class Citizen extends Person implements Serializable {
         this.AMKA=AMKA;
         setCurr_dose(1);
     }
-public Citizen(){
-        /*no param constractor*/
-}
+
     public int getCurr_dose() {
         return curr_dose;
     }
@@ -91,6 +89,10 @@ public Citizen(){
         return this.Vaccinated;
     }
 
+    @Override
+    public void setFathers_name(String value) {
+        super.setFathers_name(value);
+    }
 
     public String Get_full_name() {
         return this.getFirst_name()+" "+this.getLast_name();
@@ -108,6 +110,18 @@ public Citizen(){
 
     }
 
+    public String fullString() {
+        return "Citizen{" +super.toString()+
+                "AFM='" + AFM + '\'' +
+                ", AMKA='" + AMKA + '\'' +
+                ", Vaccinated=" + Vaccinated +
+                ", appointment=" + appointment +
+                ", adress=" + adress +
+                ", curr_dose=" + curr_dose +
+                '}';
+    }
+
+
     @Override
     public String toString() {
         return
@@ -117,4 +131,5 @@ public Citizen(){
                 "\n AMKA=" + AMKA +
                 "\n Phone_number=" + getPhone_number() ;
     }
+
 }

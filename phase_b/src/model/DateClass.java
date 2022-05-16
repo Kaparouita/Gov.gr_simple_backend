@@ -1,6 +1,8 @@
 package model;
 
-public class DateClass {
+import java.io.Serializable;
+
+public class DateClass implements Serializable {
     private int day;
     private int year;
     private int month;

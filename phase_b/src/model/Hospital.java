@@ -1,6 +1,8 @@
 package model;
 
-public class Hospital {
+import java.io.Serializable;
+
+public class Hospital implements Serializable {
     String name;
     Address hospital_address;
     String department_name;
@@ -36,5 +38,14 @@ public class Hospital {
 
     public String getDepartment_name() {
         return department_name;
+    }
+
+    @Override
+    public String toString() {
+        return "Hospital{" +
+                "name='" + name + '\'' +
+                ", hospital_address=" + hospital_address +
+                ", department_name='" + department_name + '\'' +
+                '}';
     }
 }

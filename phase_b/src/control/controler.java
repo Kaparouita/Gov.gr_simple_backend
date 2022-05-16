@@ -21,10 +21,20 @@ public class controler {
     System_Admin admin = new System_Admin(0);
 
     public controler() {
+
+    }
+
+    public void init_stuff(){
         init_hospitals();
         init_vaccines();
-        init_nurses();
-        admin.init_available_dates(get_curr_day(), get_curr_month());
+        /*init nurses and available dates*/
+        /*this need to be done only once*/
+        if(admin.getNurses().isEmpty()) {
+            init_nurses();
+        }
+        if(admin.getAvailable_dates().isEmpty()){
+            admin.init_available_dates(get_curr_day(), get_curr_month());
+        }
     }
 
 
@@ -32,15 +42,25 @@ public class controler {
      * init 5 nurses
      */
     public void init_nurses() {
-        admin.Add_nurse(new Nurse("Maria", "papadopoulou", new DateClass(6, 7, 2000), venizeleio));
+        Nurse nurse=new Nurse("Maria", "papadopoulou", new DateClass(6, 7, 2000), venizeleio);
+        nurse.setNurseID(1078694789);
+        admin.Add_nurse(nurse);
         /*password 1078694789*/
-        admin.Add_nurse(new Nurse("Katerina", "grigoriou", new DateClass(14, 8, 1980), pagnh));
+        Nurse nurse1=new Nurse("Katerina", "grigoriou", new DateClass(14, 8, 1980), pagnh);
+        nurse1.setNurseID(1831932724);
+        admin.Add_nurse(nurse1);
         /*password 1831932724*/
-        admin.Add_nurse(new Nurse("Vaggelhs", "kokosalis", new DateClass(4, 1, 1990), venizeleio));
+        Nurse nurse2=new Nurse("Vaggelhs", "kokosalis", new DateClass(4, 1, 1990), venizeleio);
+        nurse2.setNurseID(1747585824);
+        admin.Add_nurse(nurse2);
         /*password 1747585824*/
-        admin.Add_nurse(new Nurse("Elenh", "arkoulaki", new DateClass(30, 3, 1995), venizeleio));
+        Nurse nurse3=new Nurse("Elenh", "arkoulaki", new DateClass(30, 3, 1995), venizeleio);
+        nurse3.setNurseID(1023892928);
+        admin.Add_nurse(nurse3);
         /*password 1023892928*/
-        admin.Add_nurse(new Nurse("Kostas", "margiotakis", new DateClass(25, 11, 1994), pagnh));
+        Nurse nurse4=new Nurse("Kostas", "margiotakis", new DateClass(25, 11, 1994), pagnh);
+        nurse4.setNurseID(558638686);
+        admin.Add_nurse(nurse4);
         /*password 558638686*/
     }
 
@@ -79,7 +99,7 @@ public class controler {
         }
         for (Nurse nurse : admin.getNurses()) {
             /*check if there is a nurse available on the hospital*/
-            if (nurse.getHospital().equals(hospital)) {
+            if (nurse.getHospital().getName().equals(hospital.getName())) {
                 /*check if the time is available*/
                 for (DateClass available_date : admin.getAvailable_dates()) {
                     if ((available_date.getTime().equals(date.getTime())) && available_date.getDay() == date.getDay()
@@ -146,7 +166,6 @@ public class controler {
 
         //c.admin.create_citizen_file();
 
-        c.admin.get_data_from_citizen_file();
         c.admin.getCitizen_Data();
 
 
@@ -171,6 +190,4 @@ public class controler {
     */
     }
 }
-
-
 

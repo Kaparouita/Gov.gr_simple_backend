@@ -1,24 +1,35 @@
 package control;
 
 
+import jdk.swing.interop.SwingInterOpUtils;
 import model.*;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /*Terminal test*/
 public class main {
     public static void main(String[] args) throws IOException {
         controler c = new controler();
+        WriteReader writeReader = new WriteReader(c.admin);
 
 
+
+/*TEST
         Citizen b = new Citizen("Giannhs", "teo", new DateClass(6, 7, 2000), "1");
         c.admin.register(b, "123456");
+*/
+        writeReader.get_data_from_save_file();/*LOAD DATA */
+        System.out.println(c.admin.getNurses().get(0).getHospital());
+        c.init_stuff();
+        System.out.println(c.admin.getNurses().get(0).getHospital());
 
-       // c.admin.get_data_from_citizen_file();
+
+
         boolean flag = true;
-
         Scanner scanner = new Scanner(System.in);
+
         while (flag) {
             int todo;
             System.out.println("""
@@ -52,15 +63,19 @@ public class main {
                                      1. Set an appointment
                                      2. Cancel an appointment
                                      3. Print your covid-19 certificate
-                                     4. Logout""");
+                                     4. Edit profile
+                                     5. Logout""");
                         int choice = scanner.nextInt();
                         scanner.nextLine();/*consume next INT*/
                         /*set an appointment*/
                         if (choice == 1) {
-                            c.admin.getAvailable_Dates_Data();
-                            System.out.println("/----------------------------------------/\n");
-                            System.out.println("These are the available dates you can book an appointment");
-                            choose_appointment(c, citizen);
+                            if (citizen.getAppointment() == null) {
+                                c.admin.getAvailable_Dates_Data();
+                                System.out.println("/----------------------------------------/\n");
+                                System.out.println("These are the available dates you can book an appointment");
+                                choose_appointment(c, citizen);
+                            } else
+                                System.out.println("Already has an appointment");
                         }
                         /*cancel an appointment*/
                         else if (choice == 2) {
@@ -68,24 +83,25 @@ public class main {
                         }
                         /*print your covid-19 certificate*/
                         else if (choice == 3) {
-                            if(citizen.IsVaccinated()) {
+                            if (citizen.IsVaccinated()) {
                                 System.out.println(citizen.getCovid_19_certificate().print_certificate());
                                 System.out.println("Do you want to create a txt with the certificate? Type y/n");
-                                String certificate=scanner.nextLine();
-                                if(certificate.equals("y")){
+                                String certificate = scanner.nextLine();
+                                if (certificate.equals("y")) {
                                     citizen.getCovid_19_certificate().print_certificate_to_txt();
-                                }
-                                else if(certificate.equals("n")){
+                                } else if (certificate.equals("n")) {
 
-                                }
-                                else
+                                } else
                                     System.out.println("wrong input");
-                            }
-                            else
+                            } else
                                 System.out.println("You are not vaccinated yet");
                         }
-                        /*logout*/
+                        /*Edit profile*/
                         else if (choice == 4) {
+                            edit_profile(citizen);
+                        }
+                        /*logout*/
+                        else if (choice == 5) {
                             choose = false;
                         }
                     }
@@ -137,7 +153,9 @@ public class main {
             } else
                 System.out.println("wrong input");
         }
-      //  c.admin.create_citizen_file();
+
+        writeReader.create_save_file();/*update data*/
+
         scanner.close();
 
     }
@@ -200,9 +218,11 @@ public class main {
                 System.out.println("Wrong input");
             }
         }
-        System.out.println("Type your phone to get notified via SMS");
-        String phone = scanner.nextLine();
-        citizen.setPhone_number(phone);
+        if(citizen.getPhone_number()==null) {
+            System.out.println("Type your phone to get notified via SMS");
+            String phone = scanner.nextLine();
+            citizen.setPhone_number(phone);
+        }
 
         if (c.set_appointment(date, citizen, hospital1, vaccine)) {
             System.out.println(citizen.getAppointment().toString());
@@ -241,12 +261,12 @@ public class main {
         System.out.println(citizen);
         System.out.println("/----------------------------------------/");
         while (info) {
-            System.out.println("Type yes if the info is correct / type no if its not");
+            System.out.println("Type y/n if the info is correct or not  (yes/no)");
             String info_check = scanner.nextLine();
             /*an einai lathos ta stoixeia vges*/
-            if (info_check.equals("no")) {
+            if (info_check.equals("n")) {
                 info = false;
-            } else if (info_check.equals("yes")) {
+            } else if (info_check.equals("y")) {
                 boolean pass = true;
                 /*create password*/
                 while (pass) {
@@ -295,5 +315,100 @@ public class main {
             }
         } else
             System.out.println("You don't have an appointment!");
+    }
+
+    public static void edit_profile(Citizen citizen) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println(citizen.fullString());
+            String input;
+
+            System.out.println("""
+                    Edit : Type (1,2,3,4,5)
+                    1. Father's last name
+                    2. Phone_number
+                    3. Password
+                    4. Address
+                    5. AFM
+                    6. Exit
+                    """);
+            int option = scanner.nextInt();
+            scanner.nextLine();/*consume nextInt*/
+            /*FATHER NAME*/
+            if (option == 1) {
+                System.out.println("Type father's last name");
+                input = scanner.nextLine();
+                citizen.setFathers_name(input);
+            }
+            /*PHONE NUMBER*/
+            else if (option == 2) {
+                System.out.println("Type phone number");
+                input = scanner.nextLine();
+                if (input.length() == 10)
+                    citizen.setPhone_number(input);
+                else
+                    System.out.println("Phone is 10 digits");
+            }
+            /*PASSWORD*/
+            else if (option == 3) {
+                System.out.println("Type old password");
+                input = scanner.nextLine();
+                if (input.equals(citizen.getPassword())) {
+                    System.out.println("Please type the password you want to use (It must be at least 6 char/numbers)");
+                    String password1 = scanner.nextLine();
+                    System.out.println("Type it again to check if they match");
+                    String password2 = scanner.nextLine();
+                    if (password1.equals(password2) && password1.length() > 5) {
+                        citizen.Set_new_password(input, password1);
+                        System.out.println("Password changed successfully \n");
+                    } else if (!password1.equals(password2)) {
+                        System.out.println("Passwords dont match");
+                    } else {
+                        System.out.println("Password need to be at least 6 char");
+                    }
+                } else
+                    System.out.println("Wrong password");
+            }
+            /*ADDRESS*/
+            else if (option == 4) {
+                change_address(citizen);
+            }
+            /*AFM*/
+            else if (option == 5) {
+                System.out.println("Type your AFM");
+                input = scanner.nextLine();
+                System.out.println("Is this your AFM?\n" + input);
+                System.out.println("Type y/n (yes/no)");
+                String yes_no = scanner.nextLine();
+                if (yes_no.equals("y")) {
+                    citizen.setAFM(input);
+                    System.out.println("AFM changed");
+                }
+
+            }
+            /*EXIT*/
+            else if (option == 6) {
+                break;
+            }
+        }
+    }
+
+    private static void change_address(Citizen citizen) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type your city");
+        String city = scanner.nextLine();
+        System.out.println("Type your Street");
+        String street = scanner.nextLine();
+        System.out.println("Type the number of the Street");
+        int number = scanner.nextInt();
+        scanner.nextLine();/*consume next int*/
+        Address address = new Address(city, street, number);
+        System.out.println("Is this your address?\n" + address);
+        System.out.println("Type y/n (yes/no)");
+        String yes_no = scanner.nextLine();
+        if (yes_no.equals("y")) {
+            citizen.setAdress(address);
+            System.out.println("Address changed new address is : " + address);
+        }
     }
 }
